@@ -86,7 +86,7 @@ payload = {
 
 The result will start from the page number mentioned in the `start_page` parameter. You can retrieve several pages from the search result using the `pages` parameter and control how many search results per page to fetch using the `limit` parameter.
 
-### 3. Sending network requests
+### Sending network requests
 
 To start writing your Wayfair scraper, import the libraries and create a payload with the necessary variables:
 
