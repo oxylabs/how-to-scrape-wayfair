@@ -11,6 +11,7 @@ Before getting technical, let’s analyze the Wayfair page layout. Here are some
 ### 1. Search result page
 
 The search result page appears when searching for products. For example, if you search for the term Sofa, the search result will be similar to the one below:
+
 ![search result](images/Wayfair_search_results.png)
 
 You can extract all the products listed for the search term “Sofa” as well as their links, titles, prices, ratings, and images. 
@@ -18,6 +19,7 @@ You can extract all the products listed for the search term “Sofa” as well a
 ### 2. Product listing page
 
 Product listing appears when you click on a product to see the details. It shows all the product information in addition to the main data already visible on the search result page.
+
 ![product](images/wayfair_product_page.png)
 
 ### 3. reCAPTCHA protection page
@@ -137,6 +139,7 @@ The `soup object` has the parsed HTML content. Now, parse the title, price, and 
 ### Title
 
 Using a browser, inspect the HTML properties of the product title. To open the inspect tab, right-click on the product title and click "inspect". You’ll see something similar to the image below:
+
 ![title](images/wayfair_product_page_title.png)
 
 According to the HTML property, write the following code to extract the title of this product:
@@ -148,6 +151,7 @@ title = soup.find("h1", {"data-hb-id": "heading"}).text
 ### Price
 
 Inspect the price element and find the proper class attributes:
+
 ![price](images/wayfair_product_page_inspect.png)
 
 ```python
