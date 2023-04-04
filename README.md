@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The following Python tutorial will explore how to scrape data from Wayfair using Oxylabs Wayfair Scraper API. Read on for the page layout overview, project environment preparation, fetching the Wayfair product page for data extraction, and export to CSV or JSON format.
+The following Python tutorial will explore how to scrape data from Wayfair using [<u>Oxylabs Wayfair Scraper API</u>](https://oxylabs.io/products/scraper-api/ecommerce/wayfair). Read on for the page layout overview, project environment preparation, fetching the Wayfair product page for data extraction, and export to CSV or JSON format.
 
 ## Overview of Wayfair page layout
 
