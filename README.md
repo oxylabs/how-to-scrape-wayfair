@@ -1,4 +1,4 @@
-# How to Scrape Product Data from Wayfair: A Step-by-Step Guide
+# How to Scrape Product Data From Wayfair: A Step-by-Step Guide
 
 ## Introduction
 
