@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The following tutorial will explore how to scrape data from Wayfair. Read on for the page layout overview, project environment preparation, fetching the Wayfair product page for data extraction, and export to CSV or JSON format.
+The following Python tutorial will explore how to scrape data from Wayfair. Read on for the page layout overview, project environment preparation, fetching the Wayfair product page for data extraction, and export to CSV or JSON format.
 
 ## Overview of Wayfair page layout
 
