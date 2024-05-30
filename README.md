@@ -54,71 +54,66 @@ This command will install Requests, Beautiful Soup, and Pandas libraries. These 
 
 ## Step 2 - Fetching product data
 
-Use Wayfair Scraper API to fetch Wayfair product data and parse it using the Beautiful Soup library.
+Here’s a target [product page](https://www.wayfair.com/furniture/pdp/ebern-designs-adryel-98-wide-microfibermicrosuede-right-hand-facing-sofa-chaise-w003629953.html). Use Wayfair Scraper API to fetch Wayfair product data and parse it using the Beautiful Soup library. Alternatively, instead of relying on the Beautiful Soup library, you can also parse Wayfair using [Custom Parser](https://developers.oxylabs.io/scraper-apis/custom-parser), a free feature available with all Scraper APIs.
 
 ### Wayfair Scraper API overview
 
-Before starting, let’s discuss some of the most useful query parameters of Wayfair Scraper API. The API operates in two modes.
+Before starting, let’s discuss some of the most useful query parameters of Wayfair Scraper API.
 
-#### Scraping using URL
+You can scrape Wayfair by providing any Wayfair URL. You will only have to pass two required parameters: `url` and `source`. The `source` parameter must be set to `universal_ecommerce`, and the `url` should be a Wayfair web page URL. Find additional information about [forming Wayfair URLs](https://developers.oxylabs.io/scraper-apis/e-commerce-scraper-api/all-domains#forming-urls) in our documentation.
 
-Using this method,  you can scrape any Wayfair URL. You will only have to pass two required parameters: `url` and `source`. The source parameter should be set to `wayfair`, and the `url` should be a Wayfair web page URL. 
-
-It also takes optional parameters such as `user_agent_type`, & `callback_url`.
-The `user_agent_type` tells the API which device the user agent will use (e.g., desktop). Lastly, the `callback_url` parameter is used to specify a URL to which the server should send a response after processing the request. Take a look at an example of a payload:
+It also takes optional parameters such as `user_agent_type` and `callback_url`. The `user_agent_type` tells the API which device the user agent will use (e.g., desktop). Lastly, the `callback_url` parameter is used to specify a URL to which the server should send a response after processing the request. Take a look at an example of a payload:
 
 ```python
 payload = {
-    "source": "wayfair",
-    "url": "https://www.wayfair.com/furniture/pdp/wade-logan-freetown-885-wide-reversible-sleeper-sofa-chaise-w010379019.html",
+    "source": "universal_ecommerce",
+    "url": "https://www.wayfair.com/furniture/pdp/ebern-designs-adryel-98-wide-microfibermicrosuede-right-hand-facing-sofa-chaise-w003629953.html",
     "user_agent_type": "desktop",
     "callback_url": "<URL to your callback endpoint.>"
 }
 ```
 
-#### Scraping with query
-
-The other method is to scrape data from search results. It also needs two parameters: `source` and `query`. This time, set the source to `wayfair_search` and put the search terms in the query parameter. This endpoint also supports additional parameters such as `start_page`, `pages`, `limit`, `callback_url`, and `user_agent_type`.
-
-```python
-payload = {
-'source': 'wayfair_search',
-'query': 'sofa',
-'start_page': 1,
-'pages': 5,
-'limit': 48
-}
-```
-
-The result will start from the page number mentioned in the `start_page` parameter. You can retrieve several pages from the search result using the `pages` parameter and control how many search results per page to fetch using the `limit` parameter.
-
 ### Sending network requests
 
-To start writing your Wayfair scraper, import the libraries and create a payload with the necessary variables:
+To start writing your Wayfair scraper, import the libraries and create a payload with the necessary variables. Since Wayfair uses JavaScript rendering to display prices dynamically, you should also use our Headless Browser to render JavaScript and wait for the price element to load.
 
 ```python
 import requests
 from bs4 import BeautifulSoup
 
-product_url = "https://www.wayfair.com/furniture/pdp/wade-logan-freetown-885-wide-reversible-sleeper-sofa-chaise-w010379019.html"
+product_url = "https://www.wayfair.com/furniture/pdp/ebern-designs-adryel-98-wide-microfibermicrosuede-right-hand-facing-sofa-chaise-w003629953.html"
 payload = {
-    "source": "wayfair",
+    "source": "universal_ecommerce",
     "url": product_url,
-    "user_agent_type": "desktop",
+    "user_agent_type": "desktop_safari",
+    "geo_location": "United States",
+    "render": "html",
+    "browser_instructions": [
+        {
+            "type": "wait_for_element",
+            "selector": {
+                "type": "css",
+                "value": "div.SFPrice span.oakhm64z_6112"
+            },
+            "timeout_s": 10
+        }
+    ]
 }
+
 username = "USERNAME"
 password = "PASSWORD"
 ```
 
-Notice `username`, `password`, and `product_url` variables. You will have to use your Oxylabs sub-user’s username and password. Also, if you wish, you can replace the `product url` with the desired URL.
+Notice `username`, `password`, and `product_url` variables. You will have to use your Oxylabs sub-user’s username and password. Also, if you wish, you can replace the `product_url` with the desired URL.
 
 Next, send a POST request using the Requests module to Oxylabs' realtime API endpoint: <https://realtime.oxylabs.io/v1/queries>.
 
 ```python
 response = requests.post(
     "https://realtime.oxylabs.io/v1/queries",
-    auth=("USERNAME", "PASSWORD"),
+    auth=(username, password),
     json=payload,
+    timeout=180
 )
 print(response.status_code)
 ```
@@ -149,7 +144,7 @@ Using a browser, inspect the HTML properties of the product title. To open the i
 According to the HTML property, write the following code to extract the title of this product:
 
 ```python
-title = soup.find("h1", {"data-hb-id": "heading"}).text
+title = soup.find("h1", {"data-hb-id": "Heading"}).text
 ```
 
 ### Price
@@ -159,7 +154,7 @@ Inspect the price element and find the proper class attributes:
 ![price](images/wayfair_product_page_inspect.png)
 
 ```python
-price = soup.find("div", {"class": "SFPrice"}).find("span", {"class":"oakhm64z_6101"}).text
+price = soup.find("div", {"class": "SFPrice"}).find("span", {"class": "oakhm64z_6112"}).text
 ```
 
 ### Rating
@@ -170,7 +165,7 @@ Similarly, you can parse the rating element with the following code:
 rating = soup.find("span", {"class": "ProductRatingNumberWithCount-rating"}).text
 ```
 
-The class attribute of the span element is used to identify the rating element and extract the text content.
+The class attribute of the `span` element is used to identify the rating element and extract the text content.
 
 ## Step 4 - Exporting data
 
@@ -204,8 +199,64 @@ Similarly, use the data frame to export the data in JSON format. Pass an additio
 ```python
 df.to_json("product_data.json", orient="records")
 ```
+Here's the full Wayfair product scraper code:
+```python
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
 
-The script will create another file named "product_data.json" in the current folder containing the exports.
+product_url = "https://www.wayfair.com/furniture/pdp/ebern-designs-adryel-98-wide-microfibermicrosuede-right-hand-facing-sofa-chaise-w003629953.html"
+payload = {
+    "source": "universal_ecommerce",
+    "url": product_url,
+    "user_agent_type": "desktop_safari",
+    "geo_location": "United States",
+    "render": "html",
+    "browser_instructions": [
+        {
+            "type": "wait_for_element",
+            "selector": {
+                "type": "css",
+                "value": "div.SFPrice span.oakhm64z_6112"
+            },
+            "timeout_s": 10
+        }
+    ]
+}
+
+username = "USERNAME"
+password = "PASSWORD"
+
+response = requests.post(
+    "https://realtime.oxylabs.io/v1/queries",
+    auth=(username, password),
+    json=payload,
+    timeout=180
+)
+print(response.status_code)
+
+content = response.json()["results"][0]["content"]
+soup = BeautifulSoup(content, "html.parser")
+
+title = soup.find("h1", {"data-hb-id": "Heading"}).text
+price = soup.find("div", {"class": "SFPrice"}).find("span", {"class": "oakhm64z_6112"}).text
+rating = soup.find("span", {"class": "ProductRatingNumberWithCount-rating"}).text
+
+data = [{
+   "Product Title": title,
+   "Price": price,
+   "Rating": rating,
+   "Link": product_url,
+}]
+df = pd.DataFrame(data)
+df.to_csv("product_data.csv", index=False)
+df.to_json("product_data.json", orient="records")
+```
+
+The script will create another file named "product_data.json" in the current folder containing the exports:
+```json
+[{"Product Title":"Adryel 2 - Piece Upholstered Sectional","Price":"$489.99","Rating":"4.1 ","Link":"https:\/\/www.wayfair.com\/furniture\/pdp\/ebern-designs-adryel-98-wide-microfibermicrosuede-right-hand-facing-sofa-chaise-w003629953.html"}]
+```
 
 ## Conclusion
 
