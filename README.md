@@ -1,6 +1,6 @@
 # How to Scrape Product Data From Wayfair: A Step-by-Step Guide
 
-[![Wayfair ](https://raw.githubusercontent.com/oxylabs/how-to-scrape-wayfair/refs/heads/main/Wayfair-Scraper-API-1090x275.png)](https://oxylabs.go2cloud.org/aff_c?offer_id=7&aff_id=877&url_id=102)
+[![Wayfair ](https://raw.githubusercontent.com/oxylabs/how-to-scrape-wayfair/refs/heads/main/Wayfair-Scraper-API-1090x275.png)](https://oxylabs.io/products/scraper-api/ecommerce/wayfair?utm_source=877&utm_medium=affiliate&groupid=877&utm_content=wayfair-github&transaction_id=102f49063ab94276ae8f116d224b67)
 
 [![](https://dcbadge.vercel.app/api/server/eWsVUJrnG5)](https://discord.gg/GbxmdGhZjq)
 
