@@ -75,7 +75,7 @@ payload = {
 
 ### Sending network requests
 
-To start writing your Wayfair scraper, import the libraries and create a payload with the necessary variables. Since Wayfair uses JavaScript rendering to display prices dynamically, you should also use our Headless Browser to render JavaScript and wait for the price element to load.
+To start writing your Wayfair scraper, import the libraries and create a payload with the necessary variables. Since Wayfair uses JavaScript rendering to display prices dynamically, you should also use our Custom Browser Instructions to render JavaScript and wait for the price element to load.
 
 ```python
 import requests
