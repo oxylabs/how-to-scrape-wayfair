@@ -1,6 +1,6 @@
 # How to Scrape Product Data From Wayfair: A Step-by-Step Guide
 
-[![Wayfair ](https://raw.githubusercontent.com/oxylabs/how-to-scrape-wayfair/refs/heads/main/Wayfair-Scraper-API-1090x275.png)](https://oxylabs.io/products/scraper-api/ecommerce/wayfair?utm_source=877&utm_medium=affiliate&groupid=877&utm_content=wayfair-github&transaction_id=102f49063ab94276ae8f116d224b67)
+[![Wayfair ](https://raw.githubusercontent.com/oxylabs/how-to-scrape-wayfair/refs/heads/main/Wayfair-Scraper-API-1090x275.png)](https://oxylabs.io/products/scraper-api/ecommerce/wayfair?utm_source=github&utm_medium=referral&utm_content=how-to-scrape-wayfair&utm_campaign=banner&groupid=877)
 
 <p align="left">
   <a href="https://dashboard.oxylabs.io"><img src="https://img.shields.io/badge/%F0%9F%9A%80_Get_Started-FF6B35?style=for-the-badge" alt="Get started"></a>
@@ -12,7 +12,7 @@
 
 ## Introduction
 
-The following Python tutorial will explore how to scrape data from Wayfair using [<u>Oxylabs Wayfair Scraper API</u>](https://oxylabs.io/products/scraper-api/ecommerce/wayfair). Read on for the page layout overview, project environment preparation, fetching the Wayfair product page for data extraction, and export to CSV or JSON format.
+The following Python tutorial will explore how to scrape data from Wayfair using [<u>Oxylabs Wayfair Scraper API</u>](https://oxylabs.io/products/scraper-api/ecommerce/wayfair?utm_source=github&utm_medium=referral&utm_content=how-to-scrape-wayfair&groupid=877). Read on for the page layout overview, project environment preparation, fetching the Wayfair product page for data extraction, and export to CSV or JSON format.
 
 ## Overview of Wayfair page layout
 
