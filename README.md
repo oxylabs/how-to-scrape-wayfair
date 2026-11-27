@@ -4,7 +4,7 @@
 
 <p align="left">
   <a href="https://dashboard.oxylabs.io"><img src="https://img.shields.io/badge/%F0%9F%9A%80_Get_Started-FF6B35?style=for-the-badge" alt="Get started"></a>
-  <a href="https://developers.oxylabs.io/products/web-api"><img src="https://img.shields.io/badge/%F0%9F%93%9A_Documentation-4A90E2?style=for-the-badge" alt="Documentation"></a>
+  <a href="https://developers.oxylabs.io/products/web-api?utm_source=github&utm_medium=referral&utm_content=how-to-scrape-wayfair&utm_campaign=banner&groupid=877"><img src="https://img.shields.io/badge/%F0%9F%93%9A_Documentation-4A90E2?style=for-the-badge" alt="Documentation"></a>
   <a href="https://dashboard.oxylabs.io"><img src="https://img.shields.io/badge/%F0%9F%93%8A_Dashboard-2EA44F?style=for-the-badge" alt="Dashboard"></a>
   <a href="https://discord.gg/Pds3gBmKMH"><img src="https://img.shields.io/badge/%F0%9F%92%AC_Discord-5865F2?style=for-the-badge" alt="Discord"></a>
   <a href="https://www.youtube.com/@oxylabs"><img src="https://img.shields.io/badge/%E2%96%B6%EF%B8%8F_YouTube-FF0000?style=for-the-badge" alt="YouTube"></a>
@@ -60,13 +60,13 @@ This command will install Requests, Beautiful Soup, and Pandas libraries. These 
 
 ## Step 2 - Fetching product data
 
-Here’s a target [product page](https://www.wayfair.com/furniture/pdp/ebern-designs-adryel-98-wide-microfibermicrosuede-right-hand-facing-sofa-chaise-w003629953.html). Use Wayfair Scraper API to fetch Wayfair product data and parse it using the Beautiful Soup library. Alternatively, instead of relying on the Beautiful Soup library, you can also parse Wayfair using [Custom Parser](https://developers.oxylabs.io/products/web-scraper-api/features/custom-parser), a free feature available with all Scraper APIs.
+Here’s a target [product page](https://www.wayfair.com/furniture/pdp/ebern-designs-adryel-98-wide-microfibermicrosuede-right-hand-facing-sofa-chaise-w003629953.html). Use Wayfair Scraper API to fetch Wayfair product data and parse it using the Beautiful Soup library. Alternatively, instead of relying on the Beautiful Soup library, you can also parse Wayfair using [Custom Parser](https://developers.oxylabs.io/products/web-scraper-api/features/custom-parser?utm_source=github&utm_medium=referral&utm_content=how-to-scrape-wayfair&groupid=877), a free feature available with all Scraper APIs.
 
 ### Wayfair Scraper API overview
 
 Before starting, let’s discuss some of the most useful query parameters of Wayfair Scraper API.
 
-You can scrape Wayfair by providing any Wayfair URL. You will only have to pass two required parameters: `url` and `source`. The `source` parameter must be set to `universal`, and the `url` should be a Wayfair web page URL. Find additional information about [forming Wayfair URLs](https://developers.oxylabs.io/api-targets/e-commerce) in our documentation.
+You can scrape Wayfair by providing any Wayfair URL. You will only have to pass two required parameters: `url` and `source`. The `source` parameter must be set to `universal`, and the `url` should be a Wayfair web page URL. Find additional information about [forming Wayfair URLs](https://developers.oxylabs.io/api-targets/e-commerce?utm_source=github&utm_medium=referral&utm_content=how-to-scrape-wayfair&groupid=877) in our documentation.
 
 It also takes optional parameters such as `user_agent_type` and `callback_url`. The `user_agent_type` tells the API which device the user agent will use (e.g., desktop). Lastly, the `callback_url` parameter is used to specify a URL to which the server should send a response after processing the request. Take a look at an example of a payload:
 
